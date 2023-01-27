@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MemberService {
@@ -18,8 +19,17 @@ public class MemberService {
     }
 
     @Transactional
-    public Long addMember(MemberDto memberDto) {
+    public String addMember(MemberDto memberDto) {
         return MemberRepository.save(memberDto.toEntity()).getId();
+    }
+
+    public Member getMember(Member member) {
+        String memberId = member.getId();
+        Optional<Member> findMember = MemberRepository.findById(memberId);
+
+        if (findMember.isPresent())
+            return findMember.get();
+        else return null;
     }
 
     @Transactional
@@ -32,6 +42,7 @@ public class MemberService {
                     .id(member.getId())
                     .password(member.getPassword())
                     .name(member.getName())
+                    .role(member.getRole())
                     .createdDate(member.getCreatedDate())
                     .build();
             memberDtoList.add(memberDto);

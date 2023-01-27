@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 public class MemberDto {
-    private Long id;
+    private String id;
     private String password;
     private String name;
     private String role;
@@ -27,7 +27,7 @@ public class MemberDto {
     }
 
     @Builder
-    public MemberDto(Long id, String password, String name, String role, LocalDateTime createdDate) {
+    public MemberDto(String id, String password, String name, String role, LocalDateTime createdDate) {
         this.id = id;
         this.password = password;
         this.name = name;

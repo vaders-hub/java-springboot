@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @EntityListeners(AuditingEntityListener.class)
 public class Member {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private String id;
     @Column(length = 100, nullable = false)
     private String password;
     @Column(length = 10, nullable = false)
@@ -28,7 +28,7 @@ public class Member {
     private LocalDateTime createdDate;
 
     @Builder
-    public Member(Long id, String password, String name, String role) {
+    public Member(String id, String password, String name, String role) {
         this.id = id;
         this.password = password;
         this.name = name;

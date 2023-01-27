@@ -1,3 +1,9 @@
 spring:
   profiles:
     active: dev
+
+  org:
+    springframework:
+      boot:
+        autoconfigure:
+          security=DEBUG:

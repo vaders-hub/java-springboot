@@ -8,28 +8,31 @@
 <body>
 <header th:insert="common/header.html"></header>
 <div class="container">
+    <div>hello <p th:text="${session['member'].name}"></p></div>
     <table class="table">
         <thead class="thead-light">
         <tr class="text-center">
             <th scope="col">#</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">작성일</th>
+            <th scope="col">ID</th>
+            <th scope="col">역할</th>
+            <th scope="col">가입일</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="text-center">
+        <tr class="text-center" th:each="member:${memberList}">
             <th scope="row">
-                <span>1</span>
+                <a th:href="@{'/member/' + ${member.id}}">
+                    <span th:text="${member.id}"></span>
+                </a>
             </th>
             <td>
-                <span>1</span>
+                <span th:text="${member.name}"></span>
             </td>
             <td>
-                <span>1</span>
+                <span th:text="${member.role}"></span>
             </td>
             <td>
-                <span>1</span>
+                <span th:text="${member.createdDate}"></span>
             </td>
         </tr>
         </tbody>
@@ -38,7 +41,7 @@
         <div class="col-auto mr-auto">
         </div>
         <div class="col-auto">
-            링크 - ttt
+            <a th:href="@{/logout}">로그아웃</a>
         </div>
     </div>
 </div>
