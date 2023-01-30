@@ -3,6 +3,7 @@ package com.tutorial.board.domain.entity;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,22 +17,27 @@ public class Member {
 
     @Id
     @GeneratedValue
-    private String id;
+    private Long seq;
     @Column(length = 100, nullable = false)
     private String password;
     @Column(length = 10, nullable = false)
-    private String name;
+    private String id;
     @Column(length = 20, nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdDate;
 
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(this.password);
+    }
+
     @Builder
-    public Member(String id, String password, String name, String role) {
-        this.id = id;
+    public Member(Long seq, String password, String id, Role role) {
+        this.seq = seq;
         this.password = password;
-        this.name = name;
+        this.id = id;
         this.role = role;
     }
 }

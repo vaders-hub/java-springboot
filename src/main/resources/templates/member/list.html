@@ -12,22 +12,22 @@
     <table class="table">
         <thead class="thead-light">
         <tr class="text-center">
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">역할</th>
+            <th scope="col">seq</th>
+            <th scope="col">id</th>
+            <th scope="col">role</th>
             <th scope="col">가입일</th>
         </tr>
         </thead>
         <tbody>
         <tr class="text-center" th:each="member:${memberList}">
+            <td>
+                <span th:text="${member.seq}"></span>
+            </td>
             <th scope="row">
                 <a th:href="@{'/member/' + ${member.id}}">
                     <span th:text="${member.id}"></span>
                 </a>
             </th>
-            <td>
-                <span th:text="${member.name}"></span>
-            </td>
             <td>
                 <span th:text="${member.role}"></span>
             </td>
